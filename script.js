@@ -8,6 +8,23 @@ document.getElementById('gifContainer').style.display = 'block';
 document.documentElement.style.overflow = '';
 document.body.style.overflow = '';
 
+const bgMusic = document.getElementById('bgMusic');
+let musicStarted = false;
+
+function startMusic() {
+  if (musicStarted) return;
+  musicStarted = true;
+
+  // intenta reproducir
+  bgMusic.volume = 0.6; // ajusta volumen (0.0 a 1.0)
+  bgMusic.play().catch(() => {
+    // si falla, no hacemos nada; normalmente ya funciona con el primer click
+  });
+}
+
+// ✅ Primer click en cualquier parte inicia música
+document.addEventListener('click', startMusic, { once: true });
+
 function hideAllGifs() {
   const ids = [
     'gifContainer',
